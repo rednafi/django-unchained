@@ -1,7 +1,7 @@
-
 # Create your views here.
-from django.http import HttpResponse
 import datetime
+
+from django.http import HttpResponse
 
 
 def dummy_catalog(request, book_id):
