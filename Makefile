@@ -139,3 +139,14 @@ endif
 	@mypy $(path) --warn-redundant-casts --allow-redefinition --pretty \
 				--warn-unused-ignores --ignore-missing-imports
 	@echo
+
+
+# Django specific
+.PHONY: django_migrate
+django_migrate: venvcheck
+	python django_projects/locallibrary/manage.py makemigrations
+	python django_projects/locallibrary/manage.py migrate
+
+.PHONY: django_run
+django_run: django_migrate
+	python django_projects/locallibrary/manage.py runserver
