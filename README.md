@@ -13,7 +13,7 @@ Dipping toes into the land of Django
 * [Django Tutorial: The Local Library Website](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website)
 * [Django Tutorial Part2: Creating a Skeleton Website](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/skeleton_website)
 
-
+* [Django Tutorial Part 3: Using models](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Models)
 # Run the Project (On *Nix & MacOS)
 
 * Install the dependencies:
