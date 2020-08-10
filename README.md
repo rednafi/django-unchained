@@ -1,27 +1,13 @@
-# django-unchained
+# Django Unchained
 
-Dipping toes into the land of Django
+Dipping toes into the land of Django 
 
-## Resources
+## Description
 
-* [Django Web Framework (Python) - Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+This repo reflects my attempt to learn the Django framework from scratch. I'm adequately adept in Python and previously have done extensive micro-service oriented development via Flask, Starlette, FastAPI, etc. However, I don't have any prior experience of working with Django.
 
-### Progress
+Initially, I'm not going through the official documentation or reading any tutorial in general. Instead, I'm working my way through these three books by [Willium S. Vincent](https://www.amazon.com/William-S-Vincent/e/B07B38Y8SG/ref=dp_byline_cont_book_1):
 
-* [Django Introduction](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction)
-* [Setting Up a Django Development Environment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment)
-* [Django Tutorial: The Local Library Website](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website)
-* [Django Tutorial Part2: Creating a Skeleton Website](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/skeleton_website)
-
-* [Django Tutorial Part 3: Using models](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Models)
-# Run the Project (On *Nix & MacOS)
-
-* Install the dependencies:
-    ```
-    python3.8 -m venv venv
-    source venv/bin/activate
-    pip install django
-    ```
-
-* Run:
-    make django_run
+* [Django for Beginners](https://www.amazon.com/Django-Beginners-Build-websites-Python/dp/1983172669)
+* [Django for Professionals](https://www.amazon.com/Django-Professionals-Production-websites-Python/dp/1081582162)
+* [Django for APIs](https://www.amazon.com/Django-APIs-Build-web-Python/dp/1093633948)
