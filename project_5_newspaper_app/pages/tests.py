@@ -23,7 +23,7 @@ class HomePageTests(SimpleTestCase):
 class SignupPageTests(TestCase):
     username = "newuser"
     email = "newuser@email.com"
-    age=0
+    age = 34
 
     def test_signup_page_status_code(self):
         response = self.client.get("/users/signup/")
@@ -39,7 +39,9 @@ class SignupPageTests(TestCase):
         self.assertTemplateUsed(response, "signup.html")
 
     def test_signup_form(self):
-        new_user = get_user_model().objects.create_user(self.username, self.email)
+        new_user = get_user_model().objects.create_user(
+            username=self.username, email=self.email, age=self.age
+        )
         self.assertEqual(get_user_model().objects.all().count(), 1)
         self.assertEqual(get_user_model().objects.all()[0].username, self.username)
         self.assertEqual(get_user_model().objects.all()[0].email, self.email)
