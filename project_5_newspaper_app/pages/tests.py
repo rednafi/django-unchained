@@ -46,3 +46,7 @@ class SignupPageTests(TestCase):
         self.assertEqual(get_user_model().objects.all()[0].username, self.username)
         self.assertEqual(get_user_model().objects.all()[0].email, self.email)
         self.assertEqual(get_user_model().objects.all()[0].age, self.age)
+
+
+
+
