@@ -1,6 +1,6 @@
 # Django Unchained
 
-Dipping toes into the land of Django 
+Dipping toes into the land of Django
 
 ## Description
 
@@ -11,3 +11,4 @@ Initially, I'm not going through the official documentation or reading any tutor
 * [Django for Beginners](https://www.amazon.com/Django-Beginners-Build-websites-Python/dp/1983172669)
 * [Django for Professionals](https://www.amazon.com/Django-Professionals-Production-websites-Python/dp/1081582162)
 * [Django for APIs](https://www.amazon.com/Django-APIs-Build-web-Python/dp/1093633948)
+

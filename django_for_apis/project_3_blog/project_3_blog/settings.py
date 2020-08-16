@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "rest_auth",
     "rest_auth.registration",
-    'rest_framework_swagger',
     # local
     "posts.apps.PostsConfig",
 ]
