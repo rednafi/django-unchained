@@ -14,10 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import url
 from django.urls import path, include
+from rest_framework.schemas import get_schema_view
+from rest_framework.renderers import JSONOpenAPIRenderer
+
+schema_view = get_schema_view(
+    title='Blog API',
+    url='http://localhost:8000/apis/',
+    renderer_classes=[JSONOpenAPIRenderer]
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("apis/v1/", include("posts.urls")),
     path("api-auth/", include("rest_framework.urls")),
+    path("apis/v1/rest-auth/", include("rest_auth.urls")),
+    path("apis/v1/rest-auth/registration/", include("rest_auth.registration.urls")),
+    url("schema/", schema_view),
 ]
