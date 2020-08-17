@@ -1,0 +1,33 @@
+version : '3.7'
+
+services:
+  web:
+    container_name: "web"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+      labels:
+        - "django_project_2_postgresql"
+
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+    networks:
+      - django_postgresql
+
+  db:
+    image: postgres:11
+    env_file:
+      - secrets.env
+    networks:
+      - django_postgresql
+
+networks:
+  django_postgresql:
