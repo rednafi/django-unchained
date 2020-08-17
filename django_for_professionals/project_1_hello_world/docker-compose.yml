@@ -1,0 +1,18 @@
+version : '3.7'
+
+services:
+  web:
+    container_name: "django_hello_world"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        buildno: 1
+      labels:
+        - "django_project_1_hello_world"
+
+    command: python /code/manage.py run server 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
