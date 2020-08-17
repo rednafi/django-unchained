@@ -1,6 +1,6 @@
 from django.urls import path
 
-#from posts.views import PostList, PostDetail, UserList, UserDetail
+# from posts.views import PostList, PostDetail, UserList, UserDetail
 
 # traditional django View class based urls
 

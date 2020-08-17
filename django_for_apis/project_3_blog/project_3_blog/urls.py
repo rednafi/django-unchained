@@ -20,9 +20,9 @@ from rest_framework.schemas import get_schema_view
 from rest_framework.renderers import JSONOpenAPIRenderer
 
 schema_view = get_schema_view(
-    title='Blog API',
-    url='http://localhost:8000/apis/',
-    renderer_classes=[JSONOpenAPIRenderer]
+    title="Blog API",
+    url="http://localhost:8000/apis/",
+    renderer_classes=[JSONOpenAPIRenderer],
 )
 
 urlpatterns = [
