@@ -23,6 +23,7 @@ services:
       - django_postgresql
 
   db:
+    container_name: db
     image: postgres:11
     env_file:
       - secrets.env

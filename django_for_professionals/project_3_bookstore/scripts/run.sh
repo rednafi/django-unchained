@@ -9,3 +9,6 @@ docker-compose up -d --build
 
 # docker-compose exec web python manage.py \
 # createsuperuser --username ubuntu --email 'ubuntu@gmail.com' --noinput
+
+# fixing docker permission issues
+# sudo chown -c -R $USER:$USER .
