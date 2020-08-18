@@ -7,10 +7,12 @@ from .forms import CustomUserCreationForm, CustomUserUpdateForm
 
 CustomUser = get_user_model()
 
+
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserUpdateForm
     model = CustomUser
-    list_display = ['email', 'username']
+    list_display = ["email", "username"]
+
 
 admin.site.register(CustomUser, CustomUserAdmin)

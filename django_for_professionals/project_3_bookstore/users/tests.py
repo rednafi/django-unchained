@@ -23,10 +23,9 @@ class CustomUserTests(TestCase):
             username="superadmin", email="superadmin@email.com", password="superpass"
         )
 
-        self.assertEquals(admin_user.username, 'superadmin')
-        self.assertEquals(admin_user.email, 'superadmin@email.com')
-        self.assertEqual(admin_user.password, 'superpass')
+        self.assertEquals(admin_user.username, "superadmin")
+        self.assertEquals(admin_user.email, "superadmin@email.com")
+        self.assertEqual(admin_user.password, "superpass")
         self.assertTrue(admin_user.is_active)
         self.assertTrue(admin_user.is_staff)
         self.assertTrue(admin_user.is_superuser)
-        
