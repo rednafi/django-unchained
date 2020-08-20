@@ -32,8 +32,9 @@ class CustomUserTests(TestCase):
 
 
 class SignupPageTests(TestCase):
-    username = 'newusername'
-    email = 'newuser@email.com'
+    username = "newusername"
+    email = "newuser@email.com"
+
     def setUp(self):
         url = reverse("account_signup")
         self.response = self.client.get(url)
@@ -50,5 +51,3 @@ class SignupPageTests(TestCase):
         self.assertEqual(get_user_model().objects.all().count(), 1)
         self.assertEqual(get_user_model().objects.all()[0].username, self.username)
         self.assertEqual(get_user_model().objects.all()[0].email, self.email)
-
-
