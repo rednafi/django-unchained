@@ -1,7 +1,9 @@
-from django.urls import path
+# This is no longer required if you're using django all auth app
 
-from .views import SignupPageView
+# from django.urls import path
 
-urlpatterns = [
-    path("signup/", SignupPageView.as_view(), name="signup"),
-]
+# from .views import SignupPageView
+
+# urlpatterns = [
+#     path("signup/", SignupPageView.as_view(), name="signup"),
+# ]

@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     # third party
     "crispy_forms",
+    "allauth",
+    "allauth.account",
     # local
     "users.apps.UsersConfig",
     "pages.apps.PagesConfig",
@@ -119,7 +122,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -127,7 +129,23 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Custom user model
 AUTH_USER_MODEL = "users.CustomUser"
 LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+ACCOUNT_LOGOUT_REDIRECT = "home"  # django-allauth overrides LOGOUT_REDIRECT_URL
 
 # Django crispy forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# Django allauth config
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+# Email config
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
