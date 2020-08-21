@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # local
     "users.apps.UsersConfig",
     "pages.apps.PagesConfig",
+    "books.apps.BooksConfig",
 ]
 
 MIDDLEWARE = [
@@ -149,5 +150,5 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # Email config
 # To print the email use 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"
