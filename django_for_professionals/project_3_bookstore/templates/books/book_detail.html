@@ -7,5 +7,13 @@
     <h2><a href="">{{ book_detail_view_obj.title }}</a></h2>
     <p>Author: {{ book_detail_view_obj.author }}</p>
     <p>Price: {{ book_detail_view_obj.price }}</p>
+    <div>
+        <h3>Reviews</h3>
+        <ul>
+            {% for review in book_detail_view_obj.reviews.all %}
+            <li>{{ review.review }} ({{ review.author }})</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 {% endblock content %}
