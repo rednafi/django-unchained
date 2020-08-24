@@ -12,7 +12,7 @@ method="get">
 <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search"
 aria-label="Search">
 </form>
-
+<br>
 {% if user.is_authenticated %}
     Hi, {{ user.username }}! <br>
     <a href="{% url 'account_logout' %}">Log Out</a>
