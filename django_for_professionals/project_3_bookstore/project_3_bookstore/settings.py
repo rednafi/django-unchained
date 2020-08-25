@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -39,9 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # third party
-    "crispy_forms",
-    "allauth",
-    "allauth.account",
+    "crispy_forms",     # better looking forms
+    "allauth",          # handles all authentications & authorizations
+    "allauth.account",  # ^^
+    "debug_toolbar",    # better debugging
     # local
     "users.apps.UsersConfig",
     "pages.apps.PagesConfig",
@@ -57,6 +59,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",      # debug
+    "django.middleware.cache.FetchFromCacheMiddleware",     # per site caching middleware
 ]
 
 ROOT_URLCONF = "project_3_bookstore.urls"
@@ -163,3 +167,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 # Stripe
 STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get("STRIPE_TEST_PUBLISHABLE_KEY")
 STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
+
+# Django debug toolbar
+hostname, aliases, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+
+# Per site caching
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 604800
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
