@@ -9,9 +9,17 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os
+
 from pathlib import Path
 import socket
+import environ
+
+# Env variable type casting
+env = environ.Env(DEBUG=(bool, False))
+
+# Reading the .env file
+environ.Env.read_env(".env.prod")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -21,12 +29,13 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+# Can be empty on dev environement
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -40,10 +49,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # third party
-    "crispy_forms",     # better looking forms
-    "allauth",          # handles all authentications & authorizations
+    "crispy_forms",  # better looking forms
+    "allauth",  # handles all authentications & authorizations
     "allauth.account",  # ^^
-    "debug_toolbar",    # better debugging
+    "debug_toolbar",  # better debugging
     # local
     "users.apps.UsersConfig",
     "pages.apps.PagesConfig",
@@ -59,8 +68,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",      # debug
-    "django.middleware.cache.FetchFromCacheMiddleware",     # per site caching middleware
+    "debug_toolbar.middleware.DebugToolbarMiddleware",  # debug
+    "django.middleware.cache.FetchFromCacheMiddleware",  # per site caching middleware
 ]
 
 ROOT_URLCONF = "project_3_bookstore.urls"
@@ -165,8 +174,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Stripe
-STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get("STRIPE_TEST_PUBLISHABLE_KEY")
-STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
+STRIPE_TEST_PUBLISHABLE_KEY = env("STRIPE_TEST_PUBLISHABLE_KEY")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
 
 # Django debug toolbar
 hostname, aliases, ips = socket.gethostbyname_ex(socket.gethostname())
@@ -174,6 +183,6 @@ INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 
 # Per site caching
-CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_ALIAS = "default"
 CACHE_MIDDLEWARE_SECONDS = 604800
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
+CACHE_MIDDLEWARE_KEY_PREFIX = ""
