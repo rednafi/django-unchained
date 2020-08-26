@@ -14,12 +14,22 @@ from pathlib import Path
 import socket
 import environ
 
+
 # Env variable type casting
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(
+    DEBUG=bool,
+    SECURE_BROWSER_XSS_FILTER=bool,
+    SECURE_SSL_REDIRECT=bool,
+    SECURE_HSTS_SECONDS=int,
+    SECURE_HSTS_INCLUDE_SUBDOMAINS=bool,
+    SECURE_HSTS_PRELOAD=bool,
+    SECURE_CONTENT_TYPE_NOSNIFF=bool,
+    SESSION_COOKIE_SECURE=bool,
+    CSRF_COOKIE_SECURE=bool,
+)
 
 # Reading the .env file
-environ.Env.read_env(".env.prod")
-
+environ.Env.read_env(".env.dev")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -95,7 +105,6 @@ WSGI_APPLICATION = "project_3_bookstore.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -123,15 +132,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -146,8 +150,10 @@ AUTH_USER_MODEL = "users.CustomUser"
 LOGIN_REDIRECT_URL = "home"
 ACCOUNT_LOGOUT_REDIRECT = "home"  # django-allauth overrides LOGOUT_REDIRECT_URL
 
+
 # Django crispy forms
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 
 # Django allauth config
 SITE_ID = 1
@@ -162,6 +168,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 
+
 # Email config
 # To print the email use 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -173,9 +180,10 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
-# Stripe
+# Stripe payment credentials
 STRIPE_TEST_PUBLISHABLE_KEY = env("STRIPE_TEST_PUBLISHABLE_KEY")
 STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
+
 
 # Django debug toolbar
 hostname, aliases, ips = socket.gethostbyname_ex(socket.gethostname())
@@ -186,3 +194,18 @@ INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 CACHE_MIDDLEWARE_ALIAS = "default"
 CACHE_MIDDLEWARE_SECONDS = 604800
 CACHE_MIDDLEWARE_KEY_PREFIX = ""
+
+# Security in production
+SECURE_BROWSER_XSS_FILTER = env("SECURE_BROWSER_XSS_FILTER")  # XSS protection header
+X_FRAME_OPTIONS = env(
+    "X_FRAME_OPTIONS"
+)  # Clickjacking protection by denying iframe globally
+SECURE_BROWSER_XSS_FILTER = env("SECURE_BROWSER_XSS_FILTER")
+X_FRAME_OPTIONS = env("X_FRAME_OPTIONS")
+SECURE_SSL_REDIRECT = env("SECURE_SSL_REDIRECT")
+SECURE_HSTS_SECONDS = env("SECURE_HSTS_SECONDS")
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env("SECURE_HSTS_INCLUDE_SUBDOMAINS")
+SECURE_HSTS_PRELOAD = env("SECURE_HSTS_PRELOAD")
+SECURE_CONTENT_TYPE_NOSNIFF = env("SECURE_CONTENT_TYPE_NOSNIFF")
+SESSION_COOKIE_SECURE = env("SESSION_COOKIE_SECURE")
+CSRF_COOKIE_SECURE = env("CSRF_COOKIE_SECURE")

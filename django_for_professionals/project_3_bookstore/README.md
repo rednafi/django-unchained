@@ -8,8 +8,8 @@
 * From the project's root folder (where `manage.py` lives), run:
 
 ```bash
-chmod +x scripts/run.sh
-./scripts/run.sh docker-compose.yml
+chmod +x scripts/run_dev.sh
+./scripts/run_dev.sh
 ```
 
 ### Production Environment
@@ -18,10 +18,9 @@ chmod +x scripts/run.sh
 * From the project's root folder (where `manage.py` lives), run:
 
 ```bash
-chmod +x scripts/run.sh
-./scripts/run.sh docker-compose-prod.yml
+chmod +x scripts/run_prod.sh
+./scripts/run_prod.sh
 ```
-
 
 ## Deployment Notes
 
@@ -41,13 +40,13 @@ Install django-environ via pip and use it in the project's `setting.py`:
 # settings.py
 import environ
 
+# Reading the dotenv file
+environ.Env.read_env(".env.prod")
+
 # Env variable type casting
 # Type casting is only required if a variable has a specific type other
 # than string
 env = environ.Env(DEBUG=(bool, False))
-
-# Reading the dotenv file
-environ.Env.read_env(".env.prod")
 
 # Getting the value from the dotenv file
 DEBUG = env("DEBUG")

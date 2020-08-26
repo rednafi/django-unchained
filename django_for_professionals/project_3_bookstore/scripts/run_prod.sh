@@ -9,9 +9,8 @@ docker system prune -f
 
 # Spin up the containers, the --build flag makes sure you're
 # building again instead of using the cached layers
-unset dcf
 
-docker-compose -f $1 up -d --build
+docker-compose -f docker-compose-prod.yml up -d --build
 
 # fixing docker permission issues
 sudo chown -c -R $USER:$USER .
