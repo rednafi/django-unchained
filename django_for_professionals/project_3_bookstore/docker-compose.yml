@@ -1,4 +1,4 @@
-version : '3.7'
+version: "3.7"
 
 services:
   web:
@@ -11,7 +11,8 @@ services:
       labels:
         - "django_project_3_bookstore"
 
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    #command: python /code/manage.py runserver 0.0.0.0:8000
+    command: gunicorn project_3_bookstore.wsgi:application --bind 0.0.0.0:8000
     env_file:
       - .env.dev
     volumes:
@@ -33,7 +34,6 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     networks:
       - django_postgresql
-
 
 volumes:
   postgres_data:

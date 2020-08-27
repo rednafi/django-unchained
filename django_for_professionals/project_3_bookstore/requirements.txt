@@ -10,6 +10,7 @@ chardet==3.0.4            # via -r requirements.txt, requests
 coreapi==2.3.3            # via -r requirements.txt, django-rest-swagger, openapi-codec
 coreschema==0.0.4         # via -r requirements.txt, coreapi
 defusedxml==0.6.0         # via -r requirements.txt, python3-openid
+dj-database-url==0.5.0    # via -r requirements.txt
 django-allauth==0.42.0    # via -r requirements.txt
 django-cors-headers==3.4.0  # via -r requirements.txt
 django-crispy-forms==1.9.2  # via -r requirements.txt
@@ -39,6 +40,7 @@ sqlparse==0.3.1           # via -r requirements.txt, django, django-debug-toolba
 stripe==2.50.0            # via -r requirements.txt
 uritemplate==3.0.1        # via -r requirements.txt, coreapi
 urllib3==1.25.10          # via -r requirements.txt, requests
+whitenoise==5.2.0         # via -r requirements.txt
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

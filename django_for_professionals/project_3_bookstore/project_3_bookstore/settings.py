@@ -31,6 +31,7 @@ env = environ.Env(
 # Reading the .env file
 environ.Env.read_env(".env.dev")
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -56,8 +57,9 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",  # another third party dep here
     "django.contrib.staticfiles",
-    "django.contrib.sites",
+    "django.contrib.sites",  # added later
     # third party
     "crispy_forms",  # better looking forms
     "allauth",  # handles all authentications & authorizations
@@ -72,6 +74,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # add compression to staticfiles
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -209,3 +212,10 @@ SECURE_HSTS_PRELOAD = env("SECURE_HSTS_PRELOAD")
 SECURE_CONTENT_TYPE_NOSNIFF = env("SECURE_CONTENT_TYPE_NOSNIFF")
 SESSION_COOKIE_SECURE = env("SESSION_COOKIE_SECURE")
 CSRF_COOKIE_SECURE = env("CSRF_COOKIE_SECURE")
+
+
+# Heroku
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
