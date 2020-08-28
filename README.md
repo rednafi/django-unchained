@@ -1,7 +1,6 @@
 <div align="center">
 
 ![Django cover](./images/cover.png)
-# Django Unchained
 
 </div>
 
